@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.2">
+    <meta charset="UTF-8">
+<!--     <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
+  
+<style>
+
+body {
+  font-family: 'lato';
+}
+  
+.Rating-positive{
+  margin-left: 0px;
+  /* margin-bottom: 25px; */
+}
+
+.Rating-negative{
+  margin-right: 60px;
+  /* margin-bottom: 25px; */
+}
+
+#parent-one{
+  background-color: #d1c5c5;
+  border-radius: 4px;
+  height: 76px;
+  outline-style: solid;
+  outline-color: black;
+  outline-width: 1.3px;
+}
+#parent-two{
+  background-color: #d1c5c5;
+  border-radius: 4px;
+  height: 94px;
+  outline-style: solid;
+  outline-color: black;
+  outline-width: 1.3px;
+}
+#child-five{
+  background-color: #d1c5c5;
+  border-radius: 4px;
+  height: 70px;
+  outline-style: solid;
+  outline-color: black;
+  outline-width: 1.3px;
+}
+.rot{
+    padding: 4px;
+}
+
+.button {
+  background-color: #d1c5c5;
+  border: none;
+  color: white;
+  padding: 3px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  height: 25px;
+  width: 25px;
+  font-size: 16px;
+  margin: 4px 2px;
+  border-radius: 100%;
+}
+
+.button:hover {
+  background-color: lightgreen;
+  border: none;
+  color: black;
+  padding: 3px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  height: 25px;
+  width: 25px;
+  font-size: 16px;
+  margin: 4px 2px;
+  border-radius: 100%;
+}
+
+.npsbutton {
+  background-color: #d1c5c5;
+  border: none;
+  color: #8B0000;
+  padding: 3px;
+  text-align: center;
+  display: inline-block;
+  height: 18px;
+  width: 18px;
+  font-size: 14px;
+  margin: auto ;
+
+}
+
+.npsbutton:hover {
+  background-color: lightgreen;
+  border: none;
+  color: black;
+  padding: 3px;
+  text-align: center;
+  display: inline-block;
+  height: 18px;
+  width: 18px;
+  font-size: 14px;
+  margin: auto ;
+  border-radius: 200%;
+}
+
+
+/*center {*/
+/*  background: white;*/
+/*  border-radius: 4px;*/
+/*  margin: 20px 0px 20px 0px;*/
+/*  width: 78%;*/
+/*  border: 1.8px solid black;*/
+/*  padding: 10px;*/
+/*  vertical-align: middle;*/
+/*}*/
+
+center {
+    width: 300px;
+    height: 320px;
+    padding: 5px;
+    /*border: 1.8px solid black;*/
+	background-color: white;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translateX(-50%) translateY(-50%);
+}
+
+  
+.button:active {
+background-color:green;
+}
+  
+.npsbutton:active {
+background-color:green;
+}
+  
+.submit {
+        width: 30%;
+        text-align: center;
+        background-color: #4CAF50;
+        color: white;
+        padding: 5px;
+        margin: 8px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+  }
+</style>
+</head>
+
+<script type="text/javascript">
+let obj = {};
+
+function rating(x,y) {
+  console.log(x,"rating")
+  console.log(y,"id")
+  obj["rating"] = x;
+  console.log(obj,"rating output");
+  removecolor(y,"rating");
+  //disable("button"); 
+}
+
+function npsrating(x,y){
+console.log(x,"npsrating")
+console.log(y,"id")
+//document.getElementById(y).style.backgroundColor = "lightgreen";
+document.getElementById(y).style.color = "black"; 
+obj["npsvalue"] = x;
+console.log(obj);
+removecolor(y,"nps");
+//disable("npsbutton");
+}
+  
+function disable(value){
+  console.log(value)
+  const buttons = document.getElementsByClassName(value);
+  for (let i = 0; i < buttons.length; i++) {
+    buttons[i].disabled=true;
+  }
+}
+  
+function removecolor(x,y) {
+  console.log(x,"lucky")
+  let greenids = ['r4','r5','n9','n10'];
+  let redids = ['r1','r2','n1','n2','n3','n4','n5','n6'];
+  if(greenids.includes(x)){
+  document.getElementById(x).style.backgroundColor = "lightgreen";
+  } else if(redids.includes(x)) {
+    document.getElementById(x).style.backgroundColor = "red";
+  } else {
+    document.getElementById(x).style.backgroundColor = "#ffa500";
+  }
+  let rids = ['r1','r2','r3','r4','r5'];
+  let ids = ['n1','n2','n3','n4','n5','n6','n7','n8','n9','n10'];
+  
+  if(y == 'rating'){
+  for(let s=0; s < rids.length; s++){
+    console.log(rids[s])
+      if(x != rids[s]){
+          document.getElementById(rids[s]).style.backgroundColor = "#d1c5c5";
+      }
+  }
+ } else{
+   for(let s=0; s < ids.length; s++){
+    console.log(ids[s])
+      if(x != ids[s]){
+          document.getElementById(ids[s]).style.backgroundColor = "#d1c5c5";
+          document.getElementById(ids[s]).style.color = "#8B0000";
+      }
+ }
+ }
+}
+function finalsubmit() {
+console.log("jygdkgfkhgf")
+  let x = document.getElementById("feedback").value
+  console.log(x)
+  obj["feedback"] = x;
+  console.log(obj);
+    
+  let a = obj.rating;
+  let b = obj.npsvalue;
+  let c = obj.feedback;
+    
+  let dataone = JSON.stringify({obj});
+  console.log(dataone);
+  console.log(typeof dataone);
+  disable("npsbutton");
+  disable("button");
+  //disable("feedback");
+  
+//   fetch('https://cloud.yellow.ai/integrations/sendevent/nps-event/x1646712791469',
+//  {
+//   method: 'POST',
+//   headers: {
+//     'Access-Control-Allow-Origin': '*',
+//     'Accept': 'application/json',
+//     'Content-Type': 'application/json',
+//     'Authorization': 'a9c98447db94beaeb4af968dd37e',
+//     'x-api-key': 'nly1FP7ROog92HO4eSAw6FuzBJtVv-QU2UbG7Rom'
+//   },
+//   body: dataone
+// }).then(response => response.json())
+// .then(data => console.log(data)).catch(error=>console.log(error));
+   window.parent.postMessage(
+       JSON.stringify({
+                    event_code: "ym-client-event",
+                    data: `Rating: ${a} NPS: ${b} Feedback: ${c}`
+               }),
+                "*"
+           );
+  
+}
+
+ </script>
+
+<body>
+  
+<center><form>
+  <div id = "parent-one">
+   <div id="child-one">
+    <p1>
+     <label>Rate your experience</label><br>
+      </p1>
+       <button class="button" type="button" onclick="rating(`1`,`r1`)" id="r1">😡</button>
+<!--        <button class="button" type="button" onclick="test()" id="r1">😡</button> -->
+       <button class="button" type="button" onclick="rating(`2`,`r2`)" id="r2">🙁</button>
+       <button class="button" type="button" onclick="rating(`3`,`r3`)" id="r3">😐</button>
+       <button class="button" type="button" onclick="rating(`4`,`r4`)" id="r4">😌</button>
+       <button class="button" type="button" onclick="rating(`5`,`r5`)" id="r5">😃</button>
+      </p1>
+    </div>
+  <div id="child-two">
+    <span class="Rating-negative">Strongly Disagree</span>
+    <span class="Rating-positive">Strongly Agree</span>
+  </div>
+ </div>
+  <br>
+  
+  <div id="parent-two">
+    <div id="child-three">
+     <p2>
+      <label>How likely are you to recommend Janio to your friends or colleagues?</label><br>
+       <button class="npsbutton" type="button" onclick="npsrating(`0`,`n0`)" id="n0">0</button>
+       <button class="npsbutton" type="button" onclick="npsrating(`1`,`n1`)" id="n1">1</button>
+       <button class="npsbutton" type="button" onclick="npsrating(`2`,`n2`)" id="n2">2</button>
+       <button class="npsbutton" type="button" onclick="npsrating(`3`,`n3`)" id="n3">3</button>
+       <button class="npsbutton" type="button" onclick="npsrating(`4`,`n4`)" id="n4">4</button>
+       <button class="npsbutton" type="button" onclick="npsrating(`5`,`n5`)" id="n5">5</button>
+       <button class="npsbutton" type="button" onclick="npsrating(`6`,`n6`)" id="n6">6</button>
+       <button class="npsbutton" type="button" onclick="npsrating(`7`,`n7`)" id="n7">7</button>
+       <button class="npsbutton" type="button" onclick="npsrating(`8`,`n8`)" id="n8">8</button>
+       <button class="npsbutton" type="button" onclick="npsrating(`9`,`n9`)" id="n9">9</button>
+       <button class="npsbutton" type="button" onclick="npsrating(`10`,`n10`)" id="n10">10</button><br>
+     </p2>
+   </div>
+   <br>
+   <div id="child-four">
+    <span class="Rating-negative">Not at all Likely</span>
+    <span class="Rating-positive">Extremely Likely</span>
+   </div>
+  </div>
+  <br>
+  <div id = "parent-three">
+    <div id="child-five">
+     <p1>
+     <label>How can we improve our services?</label><br>
+     <textarea rows= auto cols= auto id = "feedback" placeholder="share your feedback..."></textarea><br>
+     </p1>
+     <br>
+    </div>
+     <button class="submit" type="button" onclick="finalsubmit()">submit</button>
+  </div>  
+</form></center>
+
+  </body>
+</html>
