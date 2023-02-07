@@ -189,7 +189,7 @@ function disable(value){
 function removecolor(x,y) {
   console.log(x,"lucky")
   let greenids = ['r4','r5','n9','n10'];
-  let redids = ['r1','r2','n1','n2','n3','n4','n5','n6'];
+  let redids = ['r1','r2','n0','n1','n2','n3','n4','n5','n6'];
   if(greenids.includes(x)){
   document.getElementById(x).style.backgroundColor = "lightgreen";
   } else if(redids.includes(x)) {
@@ -198,7 +198,7 @@ function removecolor(x,y) {
     document.getElementById(x).style.backgroundColor = "#ffa500";
   }
   let rids = ['r1','r2','r3','r4','r5'];
-  let ids = ['n1','n2','n3','n4','n5','n6','n7','n8','n9','n10'];
+  let ids = ['n0','n1','n2','n3','n4','n5','n6','n7','n8','n9','n10'];
   
   if(y == 'rating'){
   for(let s=0; s < rids.length; s++){
